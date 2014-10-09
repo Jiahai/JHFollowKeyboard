@@ -18,7 +18,7 @@
  */
 - (void)openFollowKeyboard;
 /**
- *  关闭视图跟随键盘移动效果，请一定记得关闭，否则页面不能释放
+ *  关闭视图跟随键盘移动效果
  */
 - (void)closeFollowKeyboard;
 

@@ -20,17 +20,21 @@
     [super viewWillAppear:animated];
     
     //开启视图跟随键盘移动效果
-    [self.tableView openFollowKeyboard];
+//    [self.tableView openFollowKeyboard];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    //关闭视图跟随键盘移动效果，请一定记得关闭，否则页面不能释放
+    //关闭视图跟随键盘移动效果
     [self.tableView closeFollowKeyboard];
 }
 
+- (void)dealloc
+{
+    NSLog(@"TableViewController dealloc");
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

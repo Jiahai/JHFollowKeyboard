@@ -13,6 +13,8 @@
 const CGFloat   defaultKeyboardAnimationDuration    = 0.25;
 const CGFloat   aboveKeyboardHeight                 = 20;           //输入框在键盘上方的距离
 
+#define screenHeight        [UIScreen mainScreen].bounds.size.height
+
 @implementation UIView (JHFollowKeyboard)
 
 static char JHFollowKeyboardEndKeyboardRect;
@@ -69,7 +71,7 @@ static char JHFollowKeyboardDeltaY;
     CGRect endKeyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     UIView *firstResponder = self.jh_firstResponder;
-    CGRect rect = [self convertRect:firstResponder.frame fromView:firstResponder.superview];
+    CGRect rect = [firstResponder.superview convertRect:firstResponder.frame toView:nil];//[self convertRect:firstResponder.frame fromView:firstResponder.superview];
     CGFloat deltaY = 0;
     
     if([self isKindOfClass:[UIScrollView class]])
@@ -82,6 +84,7 @@ static char JHFollowKeyboardDeltaY;
     }
 
     BOOL moved = NO;
+    NSLog(@"%.2f,%.2f,%.2f,%.2f,",self.jh_originY,screenHeight,self.deltaY,deltaY);
     CGFloat endOriginY = self.jh_originY + self.deltaY - deltaY;
     if(deltaY > 0)
     {
@@ -101,7 +104,7 @@ static char JHFollowKeyboardDeltaY;
         //解决设置aboveKeyboardHeight后出现黑边的bug
         if(endOriginY+self.jh_height<endKeyboardRect.origin.y)
         {
-            CGFloat blackGap = endKeyboardRect.origin.y - (endOriginY + self.jh_height);
+            CGFloat blackGap = endKeyboardRect.origin.y - (endOriginY + screenHeight);
             endOriginY += blackGap;
             deltaY -= blackGap;
         }

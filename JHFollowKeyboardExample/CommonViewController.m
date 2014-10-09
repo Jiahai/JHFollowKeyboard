@@ -28,7 +28,7 @@
 {
     [super viewWillDisappear:animated];
     
-    //关闭视图跟随键盘移动效果，请一定记得关闭，否则页面不能释放
+    //关闭视图跟随键盘移动效果
     [self.view closeFollowKeyboard];
 }
 
@@ -52,6 +52,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    NSLog(@"CommonViewController dealloc");
 }
 
 /*
