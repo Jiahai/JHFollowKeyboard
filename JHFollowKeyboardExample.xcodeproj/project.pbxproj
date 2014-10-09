@@ -14,6 +14,10 @@
 		9BB50CF719E61D590061193C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB50CF619E61D590061193C /* Images.xcassets */; };
 		9BB50CFA19E61D590061193C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB50CF819E61D590061193C /* LaunchScreen.xib */; };
 		9BB50D0619E61D590061193C /* JHFollowKeyboardExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB50D0519E61D590061193C /* JHFollowKeyboardExampleTests.m */; };
+		9BB50D1719E61DEC0061193C /* UIView+JHFollowKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB50D1619E61DEC0061193C /* UIView+JHFollowKeyboard.m */; };
+		9BB50D1A19E628F60061193C /* UIView+JHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB50D1919E628F60061193C /* UIView+JHExtension.m */; };
+		9BB50D1E19E680130061193C /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB50D1D19E680130061193C /* CommonViewController.m */; };
+		9BB50D2119E6802F0061193C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB50D2019E6802F0061193C /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,14 @@
 		9BB50CFF19E61D590061193C /* JHFollowKeyboardExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JHFollowKeyboardExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB50D0419E61D590061193C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BB50D0519E61D590061193C /* JHFollowKeyboardExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHFollowKeyboardExampleTests.m; sourceTree = "<group>"; };
+		9BB50D1519E61DEC0061193C /* UIView+JHFollowKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHFollowKeyboard.h"; sourceTree = "<group>"; };
+		9BB50D1619E61DEC0061193C /* UIView+JHFollowKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHFollowKeyboard.m"; sourceTree = "<group>"; };
+		9BB50D1819E628F60061193C /* UIView+JHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHExtension.h"; sourceTree = "<group>"; };
+		9BB50D1919E628F60061193C /* UIView+JHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHExtension.m"; sourceTree = "<group>"; };
+		9BB50D1C19E680130061193C /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
+		9BB50D1D19E680130061193C /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		9BB50D1F19E6802F0061193C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		9BB50D2019E6802F0061193C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +75,7 @@
 		9BB50CDD19E61D590061193C = {
 			isa = PBXGroup;
 			children = (
+				9BB50D1419E61DEC0061193C /* JHFollowKeyboard */,
 				9BB50CE819E61D590061193C /* JHFollowKeyboardExample */,
 				9BB50D0219E61D590061193C /* JHFollowKeyboardExampleTests */,
 				9BB50CE719E61D590061193C /* Products */,
@@ -85,6 +98,10 @@
 				9BB50CEE19E61D590061193C /* AppDelegate.m */,
 				9BB50CF019E61D590061193C /* ViewController.h */,
 				9BB50CF119E61D590061193C /* ViewController.m */,
+				9BB50D1C19E680130061193C /* CommonViewController.h */,
+				9BB50D1D19E680130061193C /* CommonViewController.m */,
+				9BB50D1F19E6802F0061193C /* TableViewController.h */,
+				9BB50D2019E6802F0061193C /* TableViewController.m */,
 				9BB50CF319E61D590061193C /* Main.storyboard */,
 				9BB50CF619E61D590061193C /* Images.xcassets */,
 				9BB50CF819E61D590061193C /* LaunchScreen.xib */,
@@ -117,6 +134,17 @@
 				9BB50D0419E61D590061193C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9BB50D1419E61DEC0061193C /* JHFollowKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9BB50D1819E628F60061193C /* UIView+JHExtension.h */,
+				9BB50D1919E628F60061193C /* UIView+JHExtension.m */,
+				9BB50D1519E61DEC0061193C /* UIView+JHFollowKeyboard.h */,
+				9BB50D1619E61DEC0061193C /* UIView+JHFollowKeyboard.m */,
+			);
+			path = JHFollowKeyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +249,11 @@
 			files = (
 				9BB50CF219E61D590061193C /* ViewController.m in Sources */,
 				9BB50CEF19E61D590061193C /* AppDelegate.m in Sources */,
+				9BB50D1719E61DEC0061193C /* UIView+JHFollowKeyboard.m in Sources */,
+				9BB50D1A19E628F60061193C /* UIView+JHExtension.m in Sources */,
 				9BB50CEC19E61D590061193C /* main.m in Sources */,
+				9BB50D2119E6802F0061193C /* TableViewController.m in Sources */,
+				9BB50D1E19E680130061193C /* CommonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
