@@ -70,10 +70,19 @@ static char JHFollowKeyboardDeltaY;
     
     UIView *firstResponder = self.jh_firstResponder;
     CGRect rect = [self convertRect:firstResponder.frame fromView:firstResponder.superview];
-    CGFloat deltaY = self.jh_originY + rect.origin.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
+    CGFloat deltaY = 0;
+    
+    if([self isKindOfClass:[UIScrollView class]])
+    {
+        deltaY = rect.origin.y - ((UIScrollView *)self).contentOffset.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
+    }
+    else
+    {
+        deltaY = rect.origin.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
+    }
 
     BOOL moved = NO;
-    CGFloat endOriginY = self.jh_originY - deltaY;
+    CGFloat endOriginY = self.jh_originY + self.deltaY - deltaY;
     if(deltaY > 0)
     {
         moved = YES;
@@ -97,7 +106,7 @@ static char JHFollowKeyboardDeltaY;
             deltaY -= blackGap;
         }
         //////////////////////////////////
-        self.deltaY += deltaY;
+        self.deltaY = deltaY;
         [UIView animateWithDuration:duration animations:^{
             self.frame = CGRectMake(0, endOriginY, self.jh_width, self.jh_height);
         }];
