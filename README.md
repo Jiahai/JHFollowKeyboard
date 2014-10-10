@@ -24,3 +24,4 @@ JHFollowKeyboard
           2、const CGFloat   aboveKeyboardHeight = 20;           //可设置输入框在键盘上方的距离
 ##2、效果图
 ![](http://ww3.sinaimg.cn/mw690/8ac1a8bfgw1el666jy26wg20940g74qs.gif)
+![](http://a.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=2ce1b2942c2eb938e86d79fae559f408/eac4b74543a98226b7fa9a528982b9014a90eb88.jpg)
