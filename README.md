@@ -22,3 +22,4 @@ JHFollowKeyboard
 ```
 注意事项：openFollowKeyboard与closeFollowKeyboard最好成对出现
 ##2、效果图
+![](http://a.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=2ce1b2942c2eb938e86d79fae559f408/eac4b74543a98226b7fa9a528982b9014a90eb88.jpg)
