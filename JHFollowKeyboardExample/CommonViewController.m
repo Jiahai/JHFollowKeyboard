@@ -37,6 +37,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self.navigationItem setTitle:@"View测试"];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler)];
     tap.numberOfTapsRequired = 1;
     tap.numberOfTouchesRequired = 1;

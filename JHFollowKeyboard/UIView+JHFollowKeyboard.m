@@ -76,47 +76,46 @@ static char JHFollowKeyboardDeltaY;
     
     if([self isKindOfClass:[UIScrollView class]])
     {
-        deltaY = rect.origin.y - ((UIScrollView *)self).contentOffset.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
+        deltaY = self.jh_originY + self.deltaY + rect.origin.y - ((UIScrollView *)self).contentOffset.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
     }
     else
     {
-        deltaY = rect.origin.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
-    }
-
-    BOOL moved = NO;
-    NSLog(@"%.2f,%.2f,%.2f,%.2f,",self.jh_originY,screenHeight,self.deltaY,deltaY);
-    CGFloat endOriginY = self.jh_originY + self.deltaY - deltaY;
-    if(deltaY > 0)
-    {
-        moved = YES;
-    }
-    else
-    {
-        //键盘切换出现黑边的bug
-        if(endOriginY < self.jh_originY + self.deltaY)
-        {
-            moved = YES;
-        }
+        deltaY = self.jh_originY + self.deltaY + rect.origin.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
     }
     
-    if(moved)
+    CGFloat endOriginY = self.jh_originY - deltaY;
+    if(deltaY > 0)
     {
         //解决设置aboveKeyboardHeight后出现黑边的bug
-        if(endOriginY+self.jh_height<endKeyboardRect.origin.y)
+        if(endOriginY+screenHeight<endKeyboardRect.origin.y)
         {
             CGFloat blackGap = endKeyboardRect.origin.y - (endOriginY + screenHeight);
             endOriginY += blackGap;
             deltaY -= blackGap;
         }
         //////////////////////////////////
-        self.deltaY = deltaY;
+        self.deltaY += deltaY;
         [UIView animateWithDuration:duration animations:^{
             self.frame = CGRectMake(0, endOriginY, self.jh_width, self.jh_height);
         }];
     }
+    else
+    {
+        //键盘切换出现黑边的bug
+        if(endOriginY+screenHeight<endKeyboardRect.origin.y)
+        {
+            CGFloat blackGap = endKeyboardRect.origin.y - (endOriginY + screenHeight);
+            endOriginY += blackGap;
+            deltaY -= blackGap;
+            
+            self.deltaY += deltaY;
+            [UIView animateWithDuration:duration animations:^{
+                self.frame = CGRectMake(0, endOriginY, self.jh_width, self.jh_height);
+            }];
+        }
+    }
     
     self.endKeyboardRect = endKeyboardRect;
-    
 }
 
 - (void)keyboardWillHidden:(NSNotification *)notification
