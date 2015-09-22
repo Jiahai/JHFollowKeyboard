@@ -20,7 +20,7 @@ const CGFloat   aboveKeyboardHeight                 = 20;           //输入框�
 static char JHFollowKeyboardEndKeyboardRect;
 static char JHFollowKeyboardDeltaY;
 static char JHFollowKeyboardTypeValue;
-
+ 
 - (void)setEndKeyboardRect:(CGRect)endKeyboardRect
 {
     objc_setAssociatedObject(self, &JHFollowKeyboardEndKeyboardRect,[NSValue valueWithCGRect:endKeyboardRect], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
