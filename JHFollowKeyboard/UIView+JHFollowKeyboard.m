@@ -19,6 +19,7 @@ const CGFloat   aboveKeyboardHeight                 = 20;           //输入框�
 
 static char JHFollowKeyboardEndKeyboardRect;
 static char JHFollowKeyboardDeltaY;
+static char JHFollowKeyboardTypeValue;
 
 - (void)setEndKeyboardRect:(CGRect)endKeyboardRect
 {
@@ -40,9 +41,21 @@ static char JHFollowKeyboardDeltaY;
     return [objc_getAssociatedObject(self, &JHFollowKeyboardDeltaY) floatValue];
 }
 
-
-- (void)openFollowKeyboard
+- (void)setJhFollowKeyboardType:(JHFollowKeyboardType)jhFollowKeyboardType
 {
+    objc_setAssociatedObject(self, &JHFollowKeyboardTypeValue,[NSNumber numberWithInteger:jhFollowKeyboardType], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (JHFollowKeyboardType)jhFollowKeyboardType
+{
+    return [objc_getAssociatedObject(self, &JHFollowKeyboardTypeValue) integerValue];
+}
+
+
+- (void)openFollowKeyboard:(JHFollowKeyboardType)type
+{
+    self.jhFollowKeyboardType = type;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderChanged) name:UITextFieldTextDidBeginEditingNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -83,7 +96,18 @@ static char JHFollowKeyboardDeltaY;
         deltaY = self.jh_originY + self.deltaY + rect.origin.y + rect.size.height + aboveKeyboardHeight - endKeyboardRect.origin.y;
     }
     
-    CGFloat endOriginY = self.jh_originY - deltaY;
+    CGFloat endOriginY = 0;
+    
+    switch (self.jhFollowKeyboardType) {
+        case JHFollowKeyboardType_Auto:
+            endOriginY = self.jh_originY - deltaY;
+            break;
+        case JHFollowKeyboardType_Moving:
+            endOriginY = endKeyboardRect.origin.y - self.jh_height;
+            break;
+        default:
+            break;
+    }
     if(deltaY > 0)
     {
         //解决设置aboveKeyboardHeight后出现黑边的bug
@@ -124,7 +148,16 @@ static char JHFollowKeyboardDeltaY;
     CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     
     [UIView animateWithDuration:duration animations:^{
-        self.frame = CGRectMake(0, self.jh_originY + self.deltaY, self.jh_width, self.jh_height);
+        switch (self.jhFollowKeyboardType) {
+            case JHFollowKeyboardType_Auto:
+                self.frame = CGRectMake(0, self.jh_originY + self.deltaY, self.jh_width, self.jh_height);
+                break;
+            case JHFollowKeyboardType_Moving:
+                self.frame = CGRectMake(0, screenHeight, self.jh_width, self.jh_height);
+                break;
+            default:
+                break;
+        }
     }];
     
     self.deltaY = 0;
