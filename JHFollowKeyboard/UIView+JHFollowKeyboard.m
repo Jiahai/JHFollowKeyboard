@@ -54,6 +54,7 @@ static char JHFollowKeyboardTypeValue;
 
 - (void)openFollowKeyboard:(JHFollowKeyboardType)type
 {
+    [self closeFollowKeyboard];
     self.jhFollowKeyboardType = type;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstResponderChanged) name:UITextFieldTextDidBeginEditingNotification object:nil];
@@ -64,7 +65,9 @@ static char JHFollowKeyboardTypeValue;
 
 - (void)closeFollowKeyboard
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)firstResponderChanged
